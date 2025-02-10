@@ -13,7 +13,7 @@
 ### Backend
 1. Navigate to the `backend` directory:
    ```bash
-   cd backend
+   cd user-management-backend
    ```
 2. Install dependencies:
    ```bash
@@ -32,7 +32,7 @@
 ### Frontend
 1. Navigate to the `frontend` directory:
    ```bash
-   cd frontend
+   cd user-management-frontend
    ```
 2. Install dependencies:
    ```bash
