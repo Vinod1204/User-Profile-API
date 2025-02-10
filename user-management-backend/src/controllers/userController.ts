@@ -34,9 +34,8 @@ export const getUserById = async (req: Request, res: Response): Promise<void> =>
 // Create a new user
 export const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { name, email, password } = req.body; // Include password
+        const { name, email, password } = req.body; 
 
-        // Check if user already exists
         const { data: existingUser, error: existingUserError } = await supabase
             .from("clients")
             .select("*")
@@ -53,7 +52,7 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
             return;
         }
 
-        // Fetch random profile picture
+        //  profile picture
         const profilePicResponse = await axios.get("https://randomuser.me/api/");
         const profilePic = profilePicResponse.data.results[0].picture.large;
 

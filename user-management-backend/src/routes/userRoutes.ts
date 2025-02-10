@@ -1,23 +1,26 @@
+// src/routes/userRoutes.ts
 import express from 'express';
-import { getUsers, getUserById, createUser, updateUser, deleteUser } from "../controllers/userController";
-import { rateLimitMiddleware } from "../middlewares/rateLimiter";
-import {authenticate }from "../middlewares/authMiddleware"; // Adjusted import
+import { rateLimiter, authenticate, authorizeRole } from '../middlewares/auth';
+import {
+  getUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser
+} from '../controllers/userController';
 
 const router = express.Router();
 
-// Fetch all users
-router.get("/users", authenticate, rateLimitMiddleware, getUsers);
 
-// Fetch a user by ID
-router.get("/users:id", authenticate, rateLimitMiddleware, getUserById);
+router.use(rateLimiter);
+router.use(authenticate as express.RequestHandler);
 
-// Create a new user
-router.post("/users", authenticate, rateLimitMiddleware, createUser);
 
-// Update user details
-router.put("/users:id", authenticate, rateLimitMiddleware, updateUser);
-
-// Delete a user
-router.delete("/users:id", authenticate, rateLimitMiddleware, deleteUser);
+router.get('/', authorizeRole(['admin']) as express.RequestHandler, getUsers);
+router.get('/:id', authorizeRole(['admin', 'user']) as express.RequestHandler, getUserById);
+router.post('/', authorizeRole(['admin']) as express.RequestHandler, createUser);
+router.put('/:id', authorizeRole(['admin', 'user']) as express.RequestHandler, updateUser);
+router.delete('/:id', authorizeRole(['admin']) as express.RequestHandler, deleteUser);
 
 export default router;
+

@@ -53,8 +53,8 @@ export default function Home() {
     } else {
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
-        await fetchUsers(session.access_token); // Fetch users after successful login
-        router.push("/dashboard"); // Redirect to the dashboard
+        await fetchUsers(session.access_token); 
+        router.push("/dashboard");
       }
     }
 

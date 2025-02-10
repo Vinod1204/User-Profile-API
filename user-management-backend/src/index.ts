@@ -8,7 +8,7 @@ console.log(supabase);
 const app = express();
 app.use(cors());
 app.use(express.json());
-console.log("JWT_SECRET:-------------------------------------------", process.env.JWT_SECRET);
+
 app.use("/users", userRoutes);
 
 const PORT = process.env.PORT || 5000;
