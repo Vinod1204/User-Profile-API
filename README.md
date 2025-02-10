@@ -38,13 +38,11 @@
    ```bash
    npm install
    ```
-3. Create a `supabaseClient.ts` file in the `utils` directory and add your Supabase credentials:
-   ```typescript
-   import { createClient } from '@supabase/supabase-js';
-
-   const supabaseUrl = 'https://xyzcompany.supabase.co';
-   const supabaseKey = 'public-anon-key';
-   export const supabase = createClient(supabaseUrl, supabaseKey);
+3. Create a `.env` file and add your Supabase credentials:
+   ```env
+   SUPABASE_URL=https://xyzcompany.supabase.co
+   SUPABASE_KEY=public-anon-key
+   API_URL=http://localhost:5000/users
    ```
 4. Start the Next.js application:
    ```bash
